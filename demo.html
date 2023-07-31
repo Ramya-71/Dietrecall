@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Calories</title>
+</head>
+<body>
+  <h1>Food Calories</h1>
+  <form id="foodForm">
+    <div>
+      <input type="checkbox" name="food" value="briyani" /> Briyani
+    </div>
+    <div>
+      <input type="checkbox" name="food" value="rice" /> Rice
+    </div>
+    <div>
+      <input type="checkbox" name="food" value="meat" /> Meat
+    </div>
+    <div>
+        <input type="checkbox" name="food" value="dal" /> dal
+    </div>
+    <div>
+        <input type="checkbox" name="food" value="cereals" />Cereals 
+    </div>
+    <div>
+        <input type="checkbox" name="food" value="products" />milk products 
+    </div>
+    <div>
+        <input type="checkbox" name="food" value="bread" />Bread
+    </div>
+    <div>
+        <input type="checkbox" name="food" value="burger" />Burger
+    </div>
+   
+    <!-- Add more checkbox items for other food names as needed -->
+
+    <input type="submit" value="Get Calories" />
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    // Food names and calorie values
+    var foodCalories = {
+      "briyani": 198,
+      "rice": 130,
+      "meat": 143,
+      "dal":198,
+      "cereals":378,
+      "products":90
+      // Add more food names and their respective calorie values as needed
+    };
+
+    document.getElementById("foodForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var checkboxes = document.getElementsByName("food");
+      var selectedFoods = [];
+
+      // Get the selected food names
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          selectedFoods.push(checkboxes[i].value);
+        }
+      }
+
+      // Calculate the total calories
+      var totalCalories = 0;
+      for (var j = 0; j < selectedFoods.length; j++) {
+        var foodName = selectedFoods[j];
+        if (foodName in foodCalories) {
+          totalCalories += foodCalories[foodName];
+        }
+      }
+
+      // Display the total calories
+      var resultDiv = document.getElementById("result");
+      resultDiv.textContent = "Total Calories: " + totalCalories;
+    });
+  </script>
+</body>
+</html>
